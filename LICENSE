@@ -1,0 +1,170 @@
+Bunsenite is dual-licensed under your choice of either:
+
+- MIT License (LICENSE-MIT below)
+- Palimpsest License v0.8 (LICENSE-PALIMPSEST below)
+
+You may use this software under the terms of either license.
+
+================================================================================
+LICENSE-MIT
+================================================================================
+
+MIT License
+
+Copyright (c) 2025 Campaign for Cooler Coding and Programming
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+LICENSE-PALIMPSEST v0.8
+================================================================================
+
+Palimpsest License v0.8
+
+Copyright (c) 2025 Campaign for Cooler Coding and Programming
+
+PREAMBLE
+
+The Palimpsest License embodies principles of reversibility, emotional safety,
+and political autonomy in software development. It ensures that all changes
+remain traceable, experimentation is encouraged, and communities maintain
+sovereignty over their technical decisions.
+
+This license grants you extensive freedoms while preserving the ability to
+understand, reverse, and learn from all modifications.
+
+TERMS AND CONDITIONS
+
+1. DEFINITIONS
+
+"Software" refers to the program, library, or work licensed under this license.
+
+"Modification" means any change to the Software, including additions, deletions,
+or alterations to the source code, documentation, or associated files.
+
+"Distribution" means providing the Software or Modifications to any third party
+by any means.
+
+"Reversibility" means the ability to understand, trace, and undo any Modification
+through version control history, documentation, or other recorded means.
+
+2. GRANT OF LICENSE
+
+Subject to the terms of this license, you are granted a perpetual, worldwide,
+non-exclusive, no-charge, royalty-free license to:
+
+a) Use the Software for any purpose
+b) Study how the Software works and modify it
+c) Redistribute copies of the Software
+d) Distribute your Modifications
+
+3. REVERSIBILITY REQUIREMENTS
+
+All Modifications must preserve Reversibility:
+
+a) Version Control: Modifications must be tracked in a version control system
+   (e.g., Git, Mercurial) that records:
+   - What changed
+   - Who made the change
+   - When the change was made
+   - Why the change was made (via commit messages)
+
+b) Documentation: Significant Modifications should include documentation
+   explaining the rationale and impact of changes.
+
+c) Attribution: Modifications must preserve existing attribution and add
+   appropriate attribution for new work.
+
+4. EMOTIONAL SAFETY
+
+This license promotes emotional safety in development:
+
+a) Experimentation: You are encouraged to experiment freely, knowing all
+   changes are reversible.
+
+b) Anxiety Reduction: The ability to undo changes reduces anxiety around
+   making mistakes.
+
+c) Learning: Reversibility enables learning from both successes and failures.
+
+5. POLITICAL AUTONOMY
+
+Communities using this Software maintain technical sovereignty:
+
+a) No Gatekeeping: No entity may restrict access to the Software or its
+   Modifications based on political views, geographic location, or other
+   discriminatory criteria (except as required by law).
+
+b) Fork Freedom: You may fork and maintain independent versions without
+   restriction.
+
+c) Decision Independence: Communities may make technical decisions autonomously.
+
+6. DISTRIBUTION REQUIREMENTS
+
+When Distributing the Software or Modifications:
+
+a) Include this license text
+b) Preserve copyright notices
+c) Provide access to version control history (or include CHANGELOG)
+d) Make source code available (for binary distributions)
+
+7. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+8. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+
+9. COMPATIBILITY
+
+This license is compatible with:
+- MIT License
+- Apache License 2.0
+- BSD licenses
+- GPL v3 (when used as the "or later" clause)
+
+10. TERMINATION
+
+This license terminates automatically if you fail to comply with its terms.
+Upon termination, you must cease Distribution but may continue to use your
+existing copies.
+
+11. INTERPRETATION
+
+This license should be interpreted in favor of:
+- Reversibility and traceability
+- Developer emotional safety
+- Community autonomy
+- Maximum freedom consistent with these principles
+
+END OF LICENSE
+
+================================================================================
+
+For more information:
+- MIT License: https://opensource.org/licenses/MIT
+- Palimpsest License: https://palingenesis.org/palimpsest-license
+- Project: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite

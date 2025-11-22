@@ -1,0 +1,142 @@
+# Bunsenite AI Training and Usage Policy
+# https://site.spawning.ai/ai-txt
+# This file declares how AI systems may interact with this repository
+
+# AI Training Permission
+# ======================
+# We ALLOW AI training on this codebase under the following terms:
+
+ai-training: allowed
+
+# Conditions for AI Training
+# ---------------------------
+# 1. Attribution: Any AI model trained on this code should acknowledge
+#    the source in model documentation or training data listings.
+#
+# 2. License Compliance: Training data usage must comply with our dual
+#    MIT + Palimpsest License. Both licenses permit AI training.
+#
+# 3. Reversibility: If the AI generates code derived from this codebase,
+#    users should be informed of the source for traceability.
+#
+# 4. Ethical Use: AI systems trained on this code should not be used for:
+#    - Malicious purposes (malware, exploits)
+#    - Surveillance or oppression
+#    - Discriminatory applications
+#    - Weaponization
+
+# AI Code Generation
+# ==================
+# We ALLOW AI systems to generate code suggestions based on this codebase.
+
+ai-code-generation: allowed
+
+# Conditions for Code Generation
+# -------------------------------
+# 1. License Notice: Generated code should include appropriate license
+#    attribution if substantial portions are derived from Bunsenite.
+#
+# 2. Quality: AI-generated code should maintain the quality standards
+#    documented in CONTRIBUTING.md (type safety, memory safety, tests).
+#
+# 3. Security: AI should not suggest unsafe code patterns, especially
+#    given our #![deny(unsafe_code)] policy.
+#
+# 4. Context: AI assistants should reference CLAUDE.md for project
+#    context and conventions when generating code.
+
+# AI Assisted Development
+# ========================
+# We ENCOURAGE AI-assisted development with these guidelines:
+
+ai-assisted-development: encouraged
+
+# Guidelines for AI Assistants
+# -----------------------------
+# 1. Read CLAUDE.md First: This file contains comprehensive project
+#    context, conventions, and critical design decisions.
+#
+# 2. Respect Technology Choices:
+#    - YES: Rust core, Zig FFI, Deno, Rescript, WASM
+#    - NO: Plain TypeScript, shell scripts, unsafe code
+#
+# 3. Follow Standards:
+#    - RSR Bronze Tier compliance
+#    - TPCF Perimeter 3 (Community Sandbox)
+#    - Conventional Commits
+#    - Rust API Guidelines
+#
+# 4. Maintain Safety:
+#    - No unsafe blocks
+#    - Comprehensive error handling (Result types)
+#    - Tests for all new code
+#
+# 5. Preserve Reversibility:
+#    - Clear commit messages
+#    - Documented rationale for changes
+#    - Git history integrity
+
+# AI Research
+# ===========
+# We ALLOW research on this codebase, including:
+
+ai-research: allowed
+
+# Research Applications
+# ----------------------
+# - Code analysis and understanding
+# - Bug detection and security analysis
+# - Performance optimization suggestions
+# - Documentation generation and improvement
+# - Test generation and coverage analysis
+# - Refactoring suggestions
+# - Architecture analysis
+# - Dependency analysis
+
+# Data Mining and Scraping
+# =========================
+# We ALLOW responsible data mining and scraping:
+
+web-scraping: allowed
+
+# Conditions for Scraping
+# ------------------------
+# 1. Respect Rate Limits: Don't overwhelm GitLab infrastructure
+# 2. Attribution: Acknowledge the source in publications/datasets
+# 3. License Compliance: Respect dual MIT + Palimpsest licensing
+# 4. Ethical Use: No malicious or discriminatory applications
+
+# Contact Information
+# ===================
+# For questions about AI usage of this codebase:
+
+contact: mailto:ai-policy@example.com
+contact: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/issues
+
+# Additional Resources
+# ====================
+# - Project: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite
+# - License: LICENSE (dual MIT + Palimpsest 0.8)
+# - AI Guide: CLAUDE.md
+# - Contributing: CONTRIBUTING.md
+# - Security: SECURITY.md
+
+# Version and Expiration
+# =======================
+version: 1.0.0
+last-updated: 2025-11-22
+review-date: 2026-11-22
+
+# Notes
+# =====
+# This policy reflects our values of:
+# - Openness: Share knowledge freely
+# - Reversibility: Enable traceability and learning
+# - Emotional Safety: Reduce anxiety through clear permissions
+# - Political Autonomy: Communities control their own technical destiny
+#
+# We believe AI can amplify human creativity when used ethically and
+# transparently. This policy aims to maximize benefit while preserving
+# our community values.
+
+# TODO: Update ai-policy@example.com with real contact

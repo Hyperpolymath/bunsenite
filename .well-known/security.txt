@@ -1,0 +1,36 @@
+# Bunsenite Security Contact Information
+# RFC 9116 Compliant security.txt file
+# https://securitytxt.org/
+
+Contact: mailto:security@example.com
+Contact: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/issues/new?issuable_template=security
+Expires: 2026-11-22T00:00:00.000Z
+Encryption: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/blob/main/.well-known/pgp-key.asc
+Preferred-Languages: en
+Canonical: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/blob/main/.well-known/security.txt
+Policy: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/blob/main/SECURITY.md
+Acknowledgments: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/blob/main/SECURITY.md#attribution
+
+# Vulnerability Disclosure Program
+#
+# We take security seriously. Please report security vulnerabilities
+# responsibly to security@example.com or via confidential GitLab issue.
+#
+# Response Timeline:
+# - Initial response: Within 48 hours
+# - Triage: Within 1 week
+# - Fix: Depends on severity (critical: days, low: weeks)
+# - Public disclosure: Coordinated, typically 90 days after fix
+#
+# Security Guarantees:
+# - Zero unsafe code (#![deny(unsafe_code)])
+# - Rust memory safety (ownership model)
+# - Type safety (compile-time guarantees)
+# - No network dependencies (offline-first)
+# - Minimal attack surface
+#
+# For more information, see: SECURITY.md
+#
+# TODO: Update security@example.com with real contact
+# TODO: Add PGP key at .well-known/pgp-key.asc
+# TODO: Update expiration date annually

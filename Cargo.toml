@@ -1,0 +1,99 @@
+[package]
+name = "bunsenite"
+version = "0.1.0"
+authors = ["Campaign for Cooler Coding and Programming"]
+edition = "2021"
+rust-version = "1.70"
+description = "Nickel configuration file parser with multi-language FFI bindings"
+documentation = "https://docs.rs/bunsenite"
+repository = "https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite"
+license = "MIT OR Palimpsest-0.8"
+keywords = ["nickel", "config", "parser", "ffi", "wasm"]
+categories = ["config", "parsing", "wasm", "api-bindings"]
+readme = "README.md"
+exclude = [
+    "/.git",
+    "/.gitlab",
+    "/target",
+    "/examples/*/target",
+]
+
+[lib]
+name = "bunsenite"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "bunsenite"
+path = "src/main.rs"
+
+[dependencies]
+# Core Nickel parser - pinned to 0.9.1 for API stability
+nickel-lang-core = "0.9.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# CLI (optional, for binary only)
+clap = { version = "4.4", features = ["derive", "cargo"], optional = true }
+
+# WASM support
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1"
+wee_alloc = "0.4"
+
+[dev-dependencies]
+# Testing
+pretty_assertions = "1.4"
+tempfile = "3.8"
+
+[features]
+default = ["cli"]
+cli = ["dep:clap"]
+wasm = []
+
+# Offline-first: No network dependencies, all features work air-gapped
+# Type safety: Rust compiler guarantees
+# Memory safety: Rust ownership model, zero unsafe blocks (enforced in CI)
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.release-with-debug]
+inherits = "release"
+strip = false
+debug = true
+
+# WASM optimization
+[profile.wasm-release]
+inherits = "release"
+opt-level = "z"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+# Security audit configuration
+[package.metadata.audit]
+# Ignore advisories that don't apply
+ignore = []
+
+# RSR Framework Metadata
+[package.metadata.rsr]
+tier = "bronze"
+compliance-version = "1.0.0"
+offline-first = true
+type-safety = "compile-time"
+memory-safety = "rust-ownership"
+tpcf-perimeter = 3  # Community Sandbox
+security-contact = "security@example.com"  # TODO: Update with real contact

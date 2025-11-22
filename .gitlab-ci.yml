@@ -1,0 +1,325 @@
+# Bunsenite GitLab CI/CD Pipeline
+# Automated testing, building, and deployment
+
+# Stages define the order of execution
+stages:
+  - check          # Code quality checks
+  - test           # Run tests
+  - build          # Build artifacts
+  - security       # Security scanning
+  - deploy         # Deployment (crates.io, releases)
+
+# Global variables
+variables:
+  CARGO_HOME: $CI_PROJECT_DIR/.cargo
+  RUST_BACKTRACE: "1"
+
+# Cache dependencies between jobs
+cache:
+  paths:
+    - .cargo/
+    - target/
+
+# === Check Stage ===
+
+# Format check
+fmt:
+  stage: check
+  image: rust:latest
+  script:
+    - rustup component add rustfmt
+    - cargo fmt --all -- --check
+  allow_failure: false
+
+# Clippy linter
+clippy:
+  stage: check
+  image: rust:latest
+  script:
+    - rustup component add clippy
+    - cargo clippy --all-targets --all-features -- -D warnings
+  allow_failure: false
+
+# Check for unsafe code
+unsafe-check:
+  stage: check
+  image: rust:latest
+  script:
+    - |
+      if grep -r "unsafe" src/; then
+        echo "ERROR: Found unsafe code! Bunsenite must have zero unsafe blocks."
+        exit 1
+      fi
+      echo "✓ No unsafe code found"
+  allow_failure: false
+
+# Verify RSR Bronze compliance
+rsr-compliance:
+  stage: check
+  image: rust:latest
+  before_script:
+    - apt-get update && apt-get install -y jq
+  script:
+    - |
+      echo "Checking RSR Bronze Tier compliance..."
+
+      # Check for required files
+      for file in README.md LICENSE SECURITY.md CONTRIBUTING.md CODE_OF_CONDUCT.md MAINTAINERS.md CHANGELOG.md; do
+        if [ ! -f "$file" ]; then
+          echo "ERROR: Missing required file: $file"
+          exit 1
+        fi
+      done
+
+      # Check .well-known/ directory
+      for file in .well-known/security.txt .well-known/ai.txt .well-known/humans.txt; do
+        if [ ! -f "$file" ]; then
+          echo "ERROR: Missing required file: $file"
+          exit 1
+        fi
+      done
+
+      # Check for network dependencies
+      if grep -E "reqwest|hyper|curl" Cargo.toml; then
+        echo "ERROR: Found network dependencies (violates offline-first)"
+        exit 1
+      fi
+
+      echo "✓ RSR Bronze Tier compliance verified"
+  allow_failure: false
+
+# === Test Stage ===
+
+# Run tests on stable Rust
+test:stable:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo test --all-features --verbose
+  coverage: '/^\d+\.\d+% coverage/'
+  artifacts:
+    reports:
+      junit: target/junit.xml
+
+# Run tests on nightly Rust (informational only)
+test:nightly:
+  stage: test
+  image: rustlang/rust:nightly
+  script:
+    - cargo test --all-features --verbose
+  allow_failure: true
+
+# Run tests with minimum supported Rust version (MSRV)
+test:msrv:
+  stage: test
+  image: rust:1.70  # Match rust-version in Cargo.toml
+  script:
+    - cargo test --all-features --verbose
+  allow_failure: false
+
+# Test documentation examples
+test:doc:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo test --doc --verbose
+  allow_failure: false
+
+# Code coverage (using tarpaulin)
+coverage:
+  stage: test
+  image: rust:latest
+  before_script:
+    - cargo install cargo-tarpaulin || true
+  script:
+    - cargo tarpaulin --out Xml --output-dir target/coverage
+  coverage: '/^\d+\.\d+% coverage/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: target/coverage/cobertura.xml
+  allow_failure: true  # Coverage is informational
+
+# === Build Stage ===
+
+# Build release binaries (Linux)
+build:linux:
+  stage: build
+  image: rust:latest
+  script:
+    - cargo build --release --verbose
+    - strip target/release/bunsenite || true
+    - ls -lh target/release/bunsenite
+    - ls -lh target/release/libbunsenite.so
+  artifacts:
+    name: "bunsenite-$CI_COMMIT_REF_NAME-linux"
+    paths:
+      - target/release/bunsenite
+      - target/release/libbunsenite.so
+    expire_in: 1 week
+
+# Build WASM module
+build:wasm:
+  stage: build
+  image: rust:latest
+  before_script:
+    - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+  script:
+    - wasm-pack build --target web --out-dir pkg --release
+    - ls -lh pkg/
+  artifacts:
+    name: "bunsenite-wasm-$CI_COMMIT_REF_NAME"
+    paths:
+      - pkg/
+    expire_in: 1 week
+  allow_failure: true  # WASM is optional
+
+# Build documentation
+build:docs:
+  stage: build
+  image: rust:latest
+  script:
+    - cargo doc --all-features --no-deps
+    - echo '<meta http-equiv="refresh" content="0; url=bunsenite">' > target/doc/index.html
+  artifacts:
+    name: "bunsenite-docs-$CI_COMMIT_REF_NAME"
+    paths:
+      - target/doc/
+    expire_in: 1 week
+
+# === Security Stage ===
+
+# Dependency audit (check for vulnerabilities)
+audit:
+  stage: security
+  image: rust:latest
+  before_script:
+    - cargo install cargo-audit || true
+  script:
+    - cargo audit --deny warnings
+  allow_failure: false
+
+# License and dependency check
+deny:
+  stage: security
+  image: rust:latest
+  before_script:
+    - cargo install cargo-deny || true
+  script:
+    - cargo deny check
+  allow_failure: true  # Informational for now
+
+# SAST (Static Application Security Testing)
+sast:
+  stage: security
+  image: rust:latest
+  script:
+    - rustup component add clippy
+    - cargo clippy --all-targets --all-features -- -D warnings
+  allow_failure: false
+
+# === Deploy Stage ===
+
+# Publish to crates.io (only on tags)
+publish:crates:
+  stage: deploy
+  image: rust:latest
+  only:
+    - tags
+  except:
+    - branches
+  script:
+    - |
+      if [ -z "$CARGO_REGISTRY_TOKEN" ]; then
+        echo "ERROR: CARGO_REGISTRY_TOKEN not set"
+        exit 1
+      fi
+      cargo publish --token $CARGO_REGISTRY_TOKEN
+  when: manual  # Require manual trigger
+
+# Create GitLab release (only on tags)
+release:gitlab:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  only:
+    - tags
+  except:
+    - branches
+  script:
+    - echo "Creating GitLab release for $CI_COMMIT_TAG"
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: 'Release $CI_COMMIT_TAG'
+    assets:
+      links:
+        - name: 'Linux Binary'
+          url: '$CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_TAG/download?job=build:linux'
+        - name: 'WASM Module'
+          url: '$CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_TAG/download?job=build:wasm'
+        - name: 'Documentation'
+          url: '$CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_TAG/download?job=build:docs'
+  when: manual  # Require manual trigger
+
+# === Special Jobs ===
+
+# Nightly build (scheduled)
+nightly:
+  stage: build
+  image: rustlang/rust:nightly
+  only:
+    - schedules
+  script:
+    - cargo build --release
+    - cargo test --all-features
+  allow_failure: true
+
+# Performance benchmarks (nightly only)
+benchmarks:
+  stage: test
+  image: rustlang/rust:nightly
+  only:
+    - schedules
+  script:
+    - cargo bench
+  allow_failure: true
+  artifacts:
+    paths:
+      - target/criterion/
+    expire_in: 1 month
+
+# === Branch-specific Rules ===
+
+# Main branch: Run all checks
+.main_rules:
+  only:
+    - main
+  except:
+    - schedules
+
+# Merge requests: Run checks and tests
+.mr_rules:
+  only:
+    - merge_requests
+  except:
+    - schedules
+
+# Tags: Run everything including deployment
+.tag_rules:
+  only:
+    - tags
+  except:
+    - branches
+    - schedules
+
+# === Job Configuration Templates ===
+
+.rust_job:
+  before_script:
+    - rustc --version
+    - cargo --version
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure

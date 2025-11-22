@@ -1,0 +1,57 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# WASM
+/pkg/
+/pkg-node/
+/wasm-pack.log
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.directory
+
+# Testing
+/target/coverage/
+*.profraw
+*.profdata
+
+# Documentation
+/target/doc/
+
+# Build artifacts
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Node/Deno
+node_modules/
+.deno/
+
+# Nix
+result
+result-*
+
+# Environment
+.env
+.env.local
+
+# Cache
+.cargo/

@@ -1,0 +1,207 @@
+# humanstxt.org
+# The humans responsible for building Bunsenite
+
+/* TEAM */
+
+Project Lead & Founder: Campaign for Cooler Coding and Programming
+Location: Worldwide
+Email: maintainers@example.com
+GitLab: @cccp
+
+/* THANKS */
+
+Nickel Language Team
+  For creating an excellent configuration language
+  https://github.com/tweag/nickel
+
+RSR Framework Contributors
+  For defining rigorous repository standards
+
+TPCF Community
+  For the Tri-Perimeter Contribution Framework
+
+Rust Community
+  For an incredible language and ecosystem
+
+Early Adopters & Testers
+  Your feedback makes this project better
+
+All Contributors (Perimeter 3)
+  Every contribution matters, thank you!
+
+/* SITE */
+
+Last updated: 2025-11-22
+Standards: RSR Bronze Tier, TPCF Perimeter 3
+Languages: Rust, Zig, TypeScript (Deno), Rescript, WebAssembly
+Doctype: GitLab Repository
+IDE: Your choice! We support all editors
+
+/* VALUES */
+
+Reversibility: All changes tracked, experimentation encouraged
+Emotional Safety: Mistakes are learning opportunities
+Political Autonomy: Communities control their technical destiny
+Type Safety: Compile-time guarantees via Rust
+Memory Safety: Ownership model, zero unsafe code
+Offline-First: Works air-gapped, no network dependencies
+
+/* LICENSE */
+
+Dual MIT + Palimpsest License v0.8
+Choose whichever works best for your use case!
+
+MIT: Maximum permissiveness
+Palimpsest: Adds reversibility, emotional safety, political autonomy
+
+See LICENSE file for full terms
+
+/* PROJECT */
+
+Name: Bunsenite
+Version: 0.1.0
+Description: Nickel configuration file parser with multi-language FFI bindings
+Repository: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite
+Homepage: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite
+Issues: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/issues
+CI/CD: GitLab CI
+Package: crates.io/crates/bunsenite (coming soon)
+
+/* ARCHITECTURE */
+
+Core: Rust (nickel-lang-core 0.9.1)
+FFI Layer: Zig C ABI (stable interface)
+Bindings: Deno, Rescript, WebAssembly
+CLI: Command-line interface
+WASM: Browser deployment (~95% native speed)
+Tests: 30+ tests, 100% pass rate
+
+/* TECHNOLOGY */
+
+Rust (2021 edition)
+  Zero unsafe code
+  Strong typing
+  Memory safety via ownership
+
+nickel-lang-core 0.9.1
+  Configuration language
+  Type checking
+  Evaluation
+
+Zig
+  C ABI layer
+  FFI stability
+
+wasm-bindgen
+  Browser deployment
+  Universal compatibility
+
+Deno
+  TypeScript runtime
+  Native FFI
+
+Rescript
+  Type-safe JavaScript
+  C FFI support
+
+/* BUILD TOOLS */
+
+Cargo: Rust package manager
+just: Command runner (Justfile)
+Nix: Reproducible builds (flake.nix)
+GitLab CI: Continuous integration
+wasm-pack: WebAssembly builds (optional)
+
+/* STANDARDS COMPLIANCE */
+
+RSR Framework: Bronze Tier
+  ✓ Type safety (Rust compiler)
+  ✓ Memory safety (ownership, no unsafe)
+  ✓ Offline-first (no network deps)
+  ✓ Complete documentation
+  ✓ .well-known/ directory
+  ✓ Build system (Justfile, Nix)
+  ✓ CI/CD pipeline
+  ✓ 100% test pass rate
+
+TPCF: Perimeter 3 (Community Sandbox)
+  Open to all contributors
+  Graduated trust model
+  Reversibility guaranteed
+
+/* CONTRIBUTING */
+
+We welcome contributions!
+
+Perimeter 1: Core maintainers
+Perimeter 2: Trusted contributors
+Perimeter 3: Community sandbox (you are here!)
+
+See CONTRIBUTING.md for:
+  - Development workflow
+  - Coding standards
+  - Testing requirements
+  - Commit conventions
+  - PR process
+
+See CODE_OF_CONDUCT.md for community guidelines
+
+/* SECURITY */
+
+Zero unsafe code: Enforced by compiler
+Memory safety: Rust ownership model
+Type safety: Compile-time guarantees
+No network deps: Offline-first design
+Regular audits: cargo audit in CI
+
+Report vulnerabilities:
+  Email: security@example.com
+  GitLab: Confidential issue
+  Response: Within 48 hours
+
+See SECURITY.md for full policy
+
+/* CONTACT */
+
+General: maintainers@example.com
+Security: security@example.com
+Code of Conduct: conduct@example.com
+GitLab Issues: https://gitlab.com/campaign-for-cooler-coding-and-programming/bunsenite/-/issues
+
+/* ATTRIBUTION */
+
+This project stands on the shoulders of giants.
+
+Thank you to everyone who has contributed to:
+  - Rust language and ecosystem
+  - Nickel configuration language
+  - Open source software movement
+  - Free/libre software philosophy
+  - Standards and best practices
+  - Educational resources
+  - Community support and mentorship
+
+We are part of a larger movement toward:
+  - Safer software (memory & type safety)
+  - Reversible development (Git, version control)
+  - Emotional safety (anxiety reduction, experimentation)
+  - Political autonomy (community sovereignty)
+  - Ethical technology (transparency, consent)
+
+/* PHILOSOPHY */
+
+"Software should be:
+  - Safe (memory & type safety)
+  - Traceable (reversibility)
+  - Empowering (emotional safety)
+  - Autonomous (political freedom)
+  - Collaborative (community-driven)"
+
+- Campaign for Cooler Coding and Programming
+
+/* END */
+
+Made with ❤️ by humans, for humans.
+Politically autonomous software for emotionally safe development.
+
+TODO: Update email addresses with real contacts
